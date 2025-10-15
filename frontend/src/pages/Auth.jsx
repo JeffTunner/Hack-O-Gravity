@@ -1,7 +1,7 @@
 export function Auth() {
     return(
         <div>
-            <h1>Auth</h1>
+            <h1>Muth</h1>
         </div>
     );
 }
