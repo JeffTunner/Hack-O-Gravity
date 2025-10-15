@@ -1,19 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-const bgImage =
-  "url('https://images.pexels.com/photos/1105766/pexels-photo-1105766.jpeg')";
+import heroBg from '../../assets/hero_section_bg_img.jpeg';
 
 const HeroSection = () => (
   <section
     className="relative flex flex-col items-center justify-center h-[60vh] md:h-[70vh] overflow-hidden"
     style={{
-      backgroundImage: bgImage,
+      backgroundImage: `url(${heroBg})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
     }}
   >
-    <div className="absolute inset-0 bg-gradient-to-br from-blue-900/80 via-gray-900/80 to-gray-900/90 z-0" />
+    <div className="absolute inset-0 w-full" />
     <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
       <h1 className="text-5xl md:text-6xl font-extrabold mb-4 text-blue-300 drop-shadow-lg tracking-tight">
         NagarSetu
