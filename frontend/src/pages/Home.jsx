@@ -1,6 +1,8 @@
 import React from 'react';
 import IssueList from '../components/IssueList';
 import { ReportIssue } from './ReportIssue';
+import Header from '../components/Header';
+import { Link } from 'react-router-dom';
 
 function Home() {
     const issues = [
@@ -11,10 +13,14 @@ function Home() {
 
     return (
         <div className="container mx-auto p-4">
+            <header>
+                <Header />
+            </header>
             <h1 className="text-2xl font-bold mb-4">Civic Issues</h1>
             <IssueList issues={issues} />
+
             <section>
-                <button><ReportIssue /></button>
+                <button><Link to="/report"><ReportIssue /></Link></button>
             </section>
         </div>
     );
