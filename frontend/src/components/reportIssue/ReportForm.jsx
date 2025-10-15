@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useIssues } from '../../context/IssueContext';
 
 const categories = [
   'Pothole',
@@ -17,6 +18,8 @@ const ReportForm = () => {
     media: null,
     voice: null,
   });
+
+  const { addIssue } = useIssues();
 
   // Location detection (browser geolocation)
   const detectLocation = () => {
@@ -58,8 +61,23 @@ const ReportForm = () => {
   // Form submit handler
   const handleSubmit = e => {
     e.preventDefault();
-    // Submit logic here (API call)
+    addIssue({
+      category: form.category,
+      description: form.description,
+      status: 'Active',
+      location: form.location,
+      anonymous: form.anonymous,
+      // media, voice can be added as needed
+    });
     alert('Issue reported! (Demo)');
+    setForm({
+      category: '',
+      description: '',
+      location: '',
+      anonymous: false,
+      media: null,
+      voice: null,
+    });
   };
 
   return (

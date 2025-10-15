@@ -1,21 +1,16 @@
 import React, { useState } from 'react';
+import { useIssues } from '../../context/IssueContext';
 
 const TrackSearch = () => {
   const [trackId, setTrackId] = useState('');
   const [result, setResult] = useState(null);
+  const { findIssue } = useIssues();
 
-  // Demo search handler
   const handleSearch = e => {
     e.preventDefault();
-    // Replace with actual API call
-    if (trackId === '12345') {
-      setResult({
-        id: '12345',
-        status: 'Resolved',
-        category: 'Pothole',
-        description: 'Large pothole near Sector 21.',
-        updated: '2025-10-10',
-      });
+    const found = findIssue(trackId);
+    if (found) {
+      setResult(found);
     } else {
       setResult(null);
       alert('No report found for this Track ID.');
