@@ -4,6 +4,15 @@ import Footer from '../components/Footer';
 import IssueMapView from '../components/issueMap/IsssueMapView';
 import FilteredReports from '../components/issueMap/FilteredReports';
 
+const categories = [
+  'All',
+  'Pothole',
+  'Garbage',
+  'Street Light',
+  'Water Leakage',
+  'Other',
+];
+
 export function IssueMap() {
   const [filter, setFilter] = useState('All');
   const [streetView, setStreetView] = useState(false);
@@ -20,13 +29,18 @@ export function IssueMap() {
             Explore civic issues reported across India. Zoom, pan, and click on markers to view details. Use filters and street view for enhanced experience.
           </p>
           <div className="flex justify-center gap-6 mb-6">
-            <button
-              onClick={() => setFilter(filter === 'All' ? 'Pothole' : 'All')}
-              className="flex items-center gap-2 px-6 py-2 rounded-full bg-blue-700 hover:bg-blue-600 text-white font-semibold shadow transition"
-            >
-              <span className="material-icons">filter_list</span>
-              {filter === 'All' ? 'Filter: Pothole' : 'Show All'}
-            </button>
+            <div className="relative">
+              <select
+                value={filter}
+                onChange={e => setFilter(e.target.value)}
+                className="appearance-none px-6 py-2 rounded-full bg-blue-700 hover:bg-blue-600 text-white font-semibold shadow transition cursor-pointer pr-10"
+              >
+                {categories.map(cat => (
+                  <option key={cat} value={cat}>{cat}</option>
+                ))}
+              </select>
+              <span className="material-icons absolute right-3 top-2 text-white pointer-events-none">filter_list</span>
+            </div>
             <button
               onClick={() => setStreetView(!streetView)}
               className="flex items-center gap-2 px-6 py-2 rounded-full bg-gray-800 hover:bg-blue-700 text-blue-200 font-semibold shadow border border-blue-500 transition"

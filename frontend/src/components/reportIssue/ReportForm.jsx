@@ -9,10 +9,17 @@ const categories = [
   'Other',
 ];
 
+const cities = {
+  Delhi: [28.6139, 77.2090],
+  Mumbai: [19.0760, 72.8777],
+  Chennai: [13.0827, 80.2707],
+};
+
 const ReportForm = () => {
   const [form, setForm] = useState({
     category: '',
     description: '',
+    city: '',
     location: '',
     anonymous: false,
     media: null,
@@ -29,6 +36,8 @@ const ReportForm = () => {
           setForm(f => ({
             ...f,
             location: `${pos.coords.latitude}, ${pos.coords.longitude}`,
+            city: '', // Clear city if using geolocation
+            position: [pos.coords.latitude, pos.coords.longitude],
           }));
         },
         () => alert('Unable to detect location.')
@@ -58,6 +67,17 @@ const ReportForm = () => {
     }
   };
 
+  // City selection handler
+  const handleCityChange = e => {
+    const city = e.target.value;
+    setForm(f => ({
+      ...f,
+      city,
+      position: city ? cities[city] : undefined,
+      location: city ? `${cities[city][0]}, ${cities[city][1]}` : '',
+    }));
+  };
+
   // Form submit handler
   const handleSubmit = e => {
     e.preventDefault();
@@ -65,6 +85,8 @@ const ReportForm = () => {
       category: form.category,
       description: form.description,
       status: 'Active',
+      city: form.city,
+      position: form.position,
       location: form.location,
       anonymous: form.anonymous,
       // media, voice can be added as needed
@@ -73,10 +95,12 @@ const ReportForm = () => {
     setForm({
       category: '',
       description: '',
+      city: '',
       location: '',
       anonymous: false,
       media: null,
       voice: null,
+      position: undefined,
     });
   };
 
@@ -116,6 +140,21 @@ const ReportForm = () => {
         >
           🎤 Voice Input
         </button>
+      </div>
+
+      {/* City Dropdown */}
+      <div>
+        <label className="block text-blue-200 font-semibold mb-2">City</label>
+        <select
+          className="w-full px-4 py-2 rounded-lg bg-gray-800 text-gray-100 border border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          value={form.city}
+          onChange={handleCityChange}
+        >
+          <option value="">Select city (or use location detection)</option>
+          {Object.keys(cities).map(city => (
+            <option key={city} value={city}>{city}</option>
+          ))}
+        </select>
       </div>
 
       {/* Location */}

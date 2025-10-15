@@ -1,32 +1,5 @@
 import React from 'react';
-
-// Same hardcoded issues as in IssueMapView
-const issues = [
-  {
-    id: 1,
-    category: 'Pothole',
-    city: 'Delhi',
-    description: 'Large pothole near Connaught Place.',
-    status: 'Active',
-    updated: '2025-10-10',
-  },
-  {
-    id: 2,
-    category: 'Garbage',
-    city: 'Mumbai',
-    description: 'Overflowing garbage bin at Marine Drive.',
-    status: 'Resolved',
-    updated: '2025-10-13',
-  },
-  {
-    id: 3,
-    category: 'Street Light',
-    city: 'Chennai',
-    description: 'Street light not working in T Nagar.',
-    status: 'Active',
-    updated: '2025-10-14',
-  },
-];
+import { useIssues } from '../../context/IssueContext';
 
 const statusColor = status =>
   status === 'Resolved'
@@ -36,6 +9,7 @@ const statusColor = status =>
     : 'bg-yellow-700';
 
 const FilteredReports = ({ filter }) => {
+  const { issues } = useIssues();
   const filtered = filter === 'All'
     ? issues
     : issues.filter(issue => issue.category === filter);
@@ -56,7 +30,7 @@ const FilteredReports = ({ filter }) => {
               </span>
             </div>
             <span className="text-gray-300">{issue.description}</span>
-            <span className="text-gray-400 text-xs mt-2">City: {issue.city}</span>
+            {issue.city && <span className="text-gray-400 text-xs mt-2">City: {issue.city}</span>}
             <span className="text-gray-400 text-xs">Last Updated: {issue.updated}</span>
           </div>
         ))}
