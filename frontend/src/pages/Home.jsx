@@ -1,28 +1,26 @@
 import React from 'react';
-import IssueList from '../components/IssueList';
-import { ReportIssue } from './ReportIssue';
-import Header from '../components/Header';
-import { Link } from 'react-router-dom';
+import Header from '../components/Header.jsx';
+import HeroSection from '../components/home/HeroSection.jsx';
+import StatsSection from '../components/home/StatsSection.jsx';
+import CommunitySection from '../components/home/CommunitySection.jsx';
+import IssuesSection from '../components/home/IssuesSection.jsx';
+import TrackSection from '../components/home/TrackSection.jsx';
+import Footer from '../components/Footer.jsx';
 
 function Home() {
-    const issues = [
-        { id: 1, title: 'Pothole on Main St', description: 'A large pothole has formed on Main St, causing traffic issues.' },
-        { id: 2, title: 'Streetlight out on 5th Ave', description: 'The streetlight at the intersection of 5th Ave and 2nd St is not functioning.' },
-        { id: 3, title: 'Graffiti on Community Center', description: 'Graffiti has appeared on the side of the community center.' },
-    ];
-
-    return (
-        <div className="container mx-auto p-4">
-            <header>
-                <Header />
-            </header>
-            <h1 className="text-2xl font-bold mb-4">Civic Issues</h1>
-            <IssueList issues={issues} />
-
-            <section>
-                <button><Link to="/report"><ReportIssue /></Link></button>
-            </section>
-        </div>
-    );
+  return (
+    <div className="bg-gradient-to-br from-gray-900 via-blue-950 to-gray-800 min-h-screen text-gray-100">
+      <Header />
+      <main>
+        <HeroSection />
+        <StatsSection />
+        <CommunitySection />
+        <IssuesSection />
+        <TrackSection />
+      </main>
+      <Footer />
+    </div>
+  );
 }
+
 export default Home;
