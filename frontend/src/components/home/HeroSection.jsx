@@ -4,31 +4,31 @@ import heroBg from '../../assets/hero_section_bg_img.jpeg';
 
 const HeroSection = () => (
   <section
-    className="relative flex flex-col items-center justify-center h-[60vh] md:h-[70vh] overflow-hidden"
+    className="relative flex flex-col items-center justify-center h-[60vh] md:h-[70vh] overflow-hidden rounded-2xl shadow-2xl mb-10"
     style={{
       backgroundImage: `url(${heroBg})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
     }}
   >
-    <div className="absolute inset-0 w-full" />
+    <div className="absolute inset-0 bg-gradient-to-br from-blue-900/80 via-gray-900/80 to-gray-900/90 z-0" />
     <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
-      <h1 className="text-5xl md:text-6xl font-extrabold mb-4 text-blue-300 drop-shadow-lg tracking-tight">
+      <h1 className="text-5xl md:text-6xl font-extrabold mb-4 text-blue-400 drop-shadow-lg tracking-tight">
         NagarSetu
       </h1>
-      <p className="text-xl md:text-2xl font-medium mb-8 text-gray-200 max-w-2xl mx-auto">
+      <p className="text-xl md:text-2xl font-medium mb-8 text-blue-100 max-w-2xl mx-auto">
         Crowdsourced Civic Issue Reporting & Resolution. Empowering citizens, transforming cities.
       </p>
       <div className="flex gap-6">
         <Link
           to="/report"
-          className="px-8 py-3 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-semibold text-lg shadow-lg transition transform hover:scale-105"
+          className="px-8 py-3 rounded-full bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500 text-white font-semibold text-lg shadow-lg transition transform hover:scale-105"
         >
           Report Issue
         </Link>
         <Link
           to="/map"
-          className="px-8 py-3 rounded-full bg-gray-800 hover:bg-blue-700 text-blue-200 font-semibold text-lg shadow-lg border border-blue-500 transition transform hover:scale-105"
+          className="px-8 py-3 rounded-full bg-gradient-to-r from-gray-800 to-blue-700 hover:from-blue-900 hover:to-blue-700 text-blue-200 font-semibold text-lg shadow-lg border border-blue-500 transition transform hover:scale-105"
         >
           View Map
         </Link>

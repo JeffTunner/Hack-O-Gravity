@@ -1,10 +1,10 @@
 import React from 'react';
-import cityImg from '../../assets/hero_section_bg_img.jpeg'; // Use your city image
+import logo from '../../assets/logo.jpg'; // Use your city image
 
 const OverviewSection = () => (
   <section className="max-w-4xl w-full mx-auto bg-gray-900/80 rounded-2xl shadow-2xl p-8 flex flex-col md:flex-row items-center gap-8">
     <img
-      src={cityImg}
+      src={logo}
       alt="City"
       className="w-48 h-48 object-cover rounded-xl border-4 border-blue-500 shadow-lg"
     />
