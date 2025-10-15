@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import logo from '../assets/logo.jpg';
 
 const navLinks = [
   { name: 'Home', path: '/' },
@@ -11,50 +12,63 @@ const navLinks = [
 ];
 
 const Header = () => {
-  const [darkMode, setDarkMode] = useState(false);
   const location = useLocation();
 
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [darkMode]);
-
   return (
-    <header className="bg-white dark:bg-gray-900 shadow-md px-8 py-3 flex items-center justify-between w-full">
-      <div className="flex items-center gap-8">
-        <span className="text-3xl font-extrabold text-blue-600 dark:text-blue-400 tracking-tight">NagarSetu</span>
-        <nav>
-          <ul className="flex gap-6">
-            {navLinks.map(link => (
-              <li key={link.name}>
-                <Link
-                  to={link.path}
-                  className={`px-3 py-2 rounded-md font-medium transition-colors
-                    ${location.pathname === link.path
-                      ? 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300'
-                      : 'text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-800 hover:text-blue-500 dark:hover:text-blue-300'}
-                  `}
-                >
-                  {link.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+    <header
+      className="
+        relative backdrop-blur-lg bg-white/70 dark:bg-gray-900/60
+        border-b border-gray-300/30 dark:border-gray-700/50
+        shadow-[0_0_15px_rgba(59,130,246,0.15)]
+        px-6 md:px-10 py-3 flex items-center justify-between
+        transition-all duration-500
+      "
+    >
+      {/* Left Section - Logo & Title */}
+      <div className="flex items-center gap-4 md:gap-6">
+        <div className="relative group">
+          <img
+            src={logo}
+            alt="NagarSetu Logo"
+            className="h-10 w-10 rounded-full object-cover border border-blue-500/70
+                       group-hover:shadow-[0_0_15px_rgba(59,130,246,0.5)]
+                       transition-all duration-300"
+          />
+        </div>
+
+        <span className="text-2xl md:text-3xl font-extrabold tracking-tight bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-600 text-transparent bg-clip-text drop-shadow-[0_0_10px_rgba(59,130,246,0.4)]">
+          NagarSetu
+        </span>
       </div>
-      <button
-        onClick={() => setDarkMode(!darkMode)}
-        className="bg-gray-200 dark:bg-gray-700 rounded-full px-4 py-2 text-base font-semibold text-gray-800 dark:text-gray-100 transition flex items-center gap-2"
-        aria-label="Toggle dark mode"
-      >
-        {darkMode ? '🌙 Dark' : '☀️ Light'}
-      </button>
+
+      {/* Center - Navigation Links */}
+      <nav className="hidden md:block">
+        <ul className="flex gap-6">
+          {navLinks.map((link) => (
+            <li key={link.name}>
+              <Link
+                to={link.path}
+                className={`
+                  relative px-3 py-2 font-semibold tracking-wide text-sm uppercase
+                  transition-all duration-300 ease-in-out
+                  ${
+                    location.pathname === link.path
+                      ? 'text-blue-500 dark:text-blue-400 after:w-full'
+                      : 'text-gray-700 dark:text-gray-200 hover:text-blue-400'
+                  }
+                  after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-[2px]
+                  after:w-0 after:bg-blue-500 after:transition-all after:duration-300 hover:after:w-full
+                `}
+              >
+                {link.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
     </header>
   );
 };
 
 export default Header;
-

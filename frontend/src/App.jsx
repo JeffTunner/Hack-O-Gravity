@@ -6,8 +6,15 @@ import { TrackReports } from './pages/TrackReports';
 import { IssueMap } from './pages/IssueMap';
 import { About } from './pages/About';
 import { Auth } from './pages/Auth';
+import 'aos/dist/aos.css';
+import AOS from 'aos';
+import { useEffect } from 'react';
 
 const App = () => {
+
+  useEffect(() => {
+  AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
+}, []);
   return (
     <Router>
       <Routes>
